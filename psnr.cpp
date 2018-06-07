@@ -199,7 +199,7 @@ int calculate(int n, char *cl[], ssim_psnr_t *ssim_psnr )
       }
       mean_psnr += ypsnr[N - 1] = yrmse ? 20 * (log10(255 / sqrt(yrmse / Y))) : 0;
 
-    printf("\r ssim %.3f  \t psnr %.3f", yssim[N - 1], ypsnr[N - 1]);
+    //printf("\r ssim %.3f  \t psnr %.3f", yssim[N - 1], ypsnr[N - 1]);
   }
 
   printf("\n");
@@ -235,8 +235,8 @@ int calculate(int n, char *cl[], ssim_psnr_t *ssim_psnr )
   ssim_psnr->stdv_ssim = stdv_ssim;
   ssim_psnr->stdv_psnr = stdv_psnr;
   
-  fprintf(stderr, "\t%d frames (CPU: %lu s) psnr mean: %.2f psnr stdv: %.2f  ssim mean: %.2f ssim stdv: %.2f, \n",
-     N, (unsigned long) ((clock() - t) / CLOCKS_PER_SEC), mean_psnr, stdv_psnr, mean_ssim, stdv_ssim);
+  //fprintf(stderr, "\t%d frames (CPU: %lu s) psnr mean: %.2f psnr stdv: %.2f  ssim mean: %.2f ssim stdv: %.2f, \n",
+  //   N, (unsigned long) ((clock() - t) / CLOCKS_PER_SEC), mean_psnr, stdv_psnr, mean_ssim, stdv_ssim);
 
   return 0;
 
@@ -499,7 +499,7 @@ int main(int argc, char *argv[])
     py = (int)floor( acc * psnrY + 0.5 );
     pu = (int)floor( acc * psnrU + 0.5 );
     pv = (int)floor( acc * psnrV + 0.5 );
-    fprintf(stdout,"\r%d\t"OUT"\t"OUT"\t"OUT"",index,py/acc,py%acc,pu/acc,pu%acc,pv/acc,pv%acc);
+    //fprintf(stdout,"\r%d\t"OUT"\t"OUT"\t"OUT"",index,py/acc,py%acc,pu/acc,pu%acc,pv/acc,pv%acc);
   }
   fprintf(stdout,"\n");
 
@@ -525,7 +525,8 @@ int main(int argc, char *argv[])
   else
   {
     //fprintf(stderr,"total\t"OUT"\t"OUT"\t"OUT"\n",py/acc,py%acc,pu/acc,pu%acc,pv/acc,pv%acc);
-    fprintf(stdout,"total\t"OUT"\t"OUT"\t"OUT"  psnr stdv: %.3f  ssim mean: %.3f ssim stdv: %.3f\n",py/acc,py%acc,pu/acc,pu%acc,pv/acc,pv%acc, ssim_psnr.stdv_psnr, ssim_psnr.mean_ssim, ssim_psnr.stdv_ssim);
+    //fprintf(stdout,"total\t"OUT"\t"OUT"\t"OUT" psnr stdv: %.2f  ssim mean: %.2f ssim stdv: %.2f,\n",py/acc,py%acc,pu/acc,pu%acc,pv/acc,pv%acc, ssim_psnr.stdv_psnr, ssim_psnr.mean_ssim, ssim_psnr.stdv_ssim);
+    fprintf(stdout,"total\t"OUT"\t"OUT"\t"OUT"\t%.3f \t%.3f \t%.3f\n",py/acc,py%acc,pu/acc,pu%acc,pv/acc,pv%acc, ssim_psnr.stdv_psnr, ssim_psnr.mean_ssim, ssim_psnr.stdv_ssim);
   }
 
   fprintf(stdout, "\n");
